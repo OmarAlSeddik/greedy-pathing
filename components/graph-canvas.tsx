@@ -192,8 +192,8 @@ export default function GraphCanvas() {
               <React.Fragment key={index}>
                 <Line
                   points={[edge.start.x, edge.start.y, edge.end.x, edge.end.y]}
-                  stroke={hoveredEdge === edge ? "#008055" : edge.selected ? "#008055" : "black"}
-                  strokeWidth={hoveredEdge === edge ? 8 : 4}
+                  stroke={edge.selected ? "#008055" : hoveredEdge === edge ? "#008055" : "black"}
+                  strokeWidth={hoveredEdge === edge ? 8 : edge.selected ? 6 : 4}
                   onMouseEnter={() => setHoveredEdge(edge)}
                   onMouseLeave={() => setHoveredEdge(null)}
                   onClick={() => handleEdgeClick(edge)}

@@ -4,6 +4,7 @@ export default function dijkstraAlgorithm(nodes: Node[], edges: Edge[], sourceId
   const snapshots: { nodes: Node[]; edges: Edge[] }[] = [];
   const distances: Map<number, number> = new Map();
   const previous: Map<number, number | null> = new Map();
+  const selectedEdges: Edge[] = [];
 
   nodes.forEach((node) => {
     distances.set(node.id, Infinity);
@@ -29,6 +30,7 @@ export default function dijkstraAlgorithm(nodes: Node[], edges: Edge[], sourceId
         if (newDistance < distances.get(neighborId)!) {
           distances.set(neighborId, newDistance);
           previous.set(neighborId, currentNodeId);
+          selectedEdges.push(edge);
 
           snapshots.push({
             nodes: nodes.map((node) =>
@@ -36,7 +38,7 @@ export default function dijkstraAlgorithm(nodes: Node[], edges: Edge[], sourceId
                 ? { ...node, visited: true }
                 : node
             ),
-            edges: [...edges],
+            edges: edges.map((e) => (selectedEdges.includes(e) ? { ...e, selected: true } : e)),
           });
         }
       }

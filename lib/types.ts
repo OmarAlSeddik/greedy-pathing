@@ -11,3 +11,8 @@ export type Edge = {
   weight: number;
   selected?: boolean;
 };
+
+export type Graph = {
+  nodes: Node[];
+  edges: Edge[];
+};

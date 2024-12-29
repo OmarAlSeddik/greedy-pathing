@@ -18,13 +18,13 @@ export default function primAlgorithm(nodes: Node[], edges: Edge[]) {
       prev.weight < curr.weight ? prev : curr
     );
 
-    mstEdges.push({ ...minEdge, selected: true });
+    mstEdges.push(minEdge);
     visitedNodes.add(minEdge.start.id);
     visitedNodes.add(minEdge.end.id);
 
     snapshots.push({
       nodes: nodes.map((node) => (visitedNodes.has(node.id) ? { ...node, visited: true } : node)),
-      edges: [...edges],
+      edges: edges.map((edge) => (mstEdges.includes(edge) ? { ...edge, selected: true } : edge)),
     });
   }
 

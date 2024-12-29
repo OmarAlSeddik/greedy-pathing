@@ -25,7 +25,7 @@ export default function kruskalAlgorithm(nodes: Node[], edges: Edge[]) {
   for (const edge of sortedEdges) {
     if (find(edge.start.id) !== find(edge.end.id)) {
       union(edge.start.id, edge.end.id);
-      mstEdges.push({ ...edge, selected: true });
+      mstEdges.push(edge);
 
       snapshots.push({
         nodes: [...nodes],
